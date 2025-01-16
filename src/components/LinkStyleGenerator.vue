@@ -262,7 +262,7 @@ export default {
       }
       this.startLoading('crawl');
       try {
-        const response = await axios.post("https://8.217.72.161:8080/api/content/crawl", {
+        const response = await axios.post("https://ugc-content-creator.com/api/content/crawl", {
           productUrl: this.productUrl
         });
         this.productInfo = {
