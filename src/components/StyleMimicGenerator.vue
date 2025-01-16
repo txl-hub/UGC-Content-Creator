@@ -162,13 +162,13 @@ export default {
     startLoading() {
       this.loading = true
       this.progressWidth = 0
-      this.loadingText = '正在生成文案，预计需要15-20秒...'
+      this.loadingText = '正在生成文案，预计需要3-5秒...'
       
       this.progressTimer = setInterval(() => {
         if (this.progressWidth < 90) {
-          this.progressWidth += 1
+          this.progressWidth += 3
         }
-      }, 200)
+      }, 100)
     },
     
     stopLoading() {
@@ -211,18 +211,17 @@ export default {
           }
           
           console.log('发送请求数据:', {
-            url: "http://localhost:8080/api/content/generate-mimic",
+            url: "http://8.217.72.161:8080/api/content/generate-mimic",
             method: 'POST',
             data: requestData,
             timestamp: new Date().toISOString()
           })
 
           const response = await axios.post(
-            "http://localhost:8080/api/content/generate-mimic", 
+            "http://8.217.72.161:8080/api/content/generate-mimic", 
             requestData
           )
 
-          // 记录响应数据
           console.log('收到响应数据:', {
             status: response.status,
             statusText: response.statusText,
@@ -244,7 +243,6 @@ export default {
           break
           
         } catch (error) {
-          // 详细记录错误信息
           console.error('请求失败:', {
             retryCount,
             error: {
