@@ -211,14 +211,14 @@ export default {
           }
           
           console.log('发送请求数据:', {
-            url: "http://8.217.72.161:8080/api/content/generate-mimic",
+            url: "https://8.217.72.161:8080/api/content/generate-mimic",
             method: 'POST',
             data: requestData,
             timestamp: new Date().toISOString()
           })
 
           const response = await axios.post(
-            "http://8.217.72.161:8080/api/content/generate-mimic", 
+            "https://8.217.72.161:8080/api/content/generate-mimic", 
             requestData
           )
 
