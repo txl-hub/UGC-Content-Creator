@@ -264,6 +264,12 @@ export default {
       try {
         const response = await axios.post("https://ugc-content-creator.com/api/content/crawl", {
           productUrl: this.productUrl
+        }, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          withCredentials: true
         });
         this.productInfo = {
           ...this.productInfo,
@@ -272,7 +278,7 @@ export default {
         };
       } catch (error) {
         console.error("获取商品信息失败：", error);
-        alert("获取商品信息失败，请手动填写商品信息");
+        alert(`获取商品信息失败: ${error.response?.data?.message || error.message}`);
       } finally {
         this.stopLoading();
       }
@@ -290,12 +296,18 @@ export default {
           style: this.selectedStyle,
           length: this.selectedLength,
           language: this.selectedLanguage
+        }, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          withCredentials: true
         });
         this.responseText = response.data;
         this.originalContent = response.data;
       } catch (error) {
         console.error("生成文案失败：", error);
-        alert("生成文案失败，请稍后重试！");
+        alert(`生成文案失败: ${error.response?.data?.message || error.message}`);
       } finally {
         this.stopLoading();
       }

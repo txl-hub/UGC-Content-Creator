@@ -192,22 +192,10 @@ export default {
       
       while (retryCount < maxRetries) {
         try {
-          // 记录请求参数
           const requestData = {
             template: this.templateText,
             scene: this.selectedScene,
-            length: this.selectedLength,
-            productInfo: {
-              title: "XXXXX品牌 补水保湿面霜",
-              description: "补水保湿，改善干燥，提亮肤色",
-              price: "299.00",
-              features: [
-                "深层补水",
-                "长效保湿",
-                "温和不刺激",
-                "提亮肤色"
-              ]
-            }
+            length: this.selectedLength
           }
           
           console.log('发送请求数据:', {
@@ -219,7 +207,14 @@ export default {
 
           const response = await axios.post(
             "https://ugc-content-creator.com/api/content/generate-mimic", 
-            requestData
+            requestData,
+            {
+              headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+              },
+              withCredentials: true
+            }
           )
 
           // 记录响应数据
