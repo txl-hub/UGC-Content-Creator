@@ -1,7 +1,7 @@
 const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
   transpileDependencies: true,
-  publicPath: '/',
+  publicPath: './',
   configureWebpack: {
     output: {
       filename: 'js/[name].[hash].js',
