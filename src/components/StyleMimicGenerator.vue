@@ -211,14 +211,14 @@ export default {
           }
           
           console.log('发送请求数据:', {
-            url: "https://ugc-content-creator.com/api/content/generate-mimic",
+            url: "http://localhost:8080/api/content/generate-mimic",
             method: 'POST',
             data: requestData,
             timestamp: new Date().toISOString()
           })
 
           const response = await axios.post(
-            "https://ugc-content-creator.com/api/content/generate-mimic", 
+            "http://localhost:8080/api/content/generate-mimic", 
             requestData
           )
 
