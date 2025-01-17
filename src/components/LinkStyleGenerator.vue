@@ -437,20 +437,26 @@ export default {
 
 .result-section {
   margin-top: 30px;
-  padding: 20px;
-  background: #f8f9fa;
+  background: #fff;
   border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .result-content {
+  padding: 20px;
+  max-height: 500px;
+  overflow-y: auto;
+  background: #fff;
+  border-radius: 8px;
+}
+
+.content-display {
   white-space: pre-wrap;
   line-height: 1.6;
   font-size: 1.1rem;
   color: #333;
-  padding: 20px;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .loader {

@@ -299,7 +299,7 @@ export default {
 <style scoped>
 /* 基础样式 */
 .container {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 20px;
 }
@@ -315,11 +315,28 @@ export default {
 
 .flex-container {
   display: flex;
-  gap: 30px;
+  gap: 50px;
+  margin: 20px 0;
 }
 
 .left-panel, .right-panel {
   flex: 1;
+  min-width: 0;
+}
+
+/* 添加面板样式 */
+.left-panel {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.right-panel {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* 输入区域样式 */
@@ -331,6 +348,9 @@ export default {
   resize: vertical;
   font-size: 1rem;
   line-height: 1.6;
+  min-height: 300px;
+  max-height: 600px;
+  overflow-y: auto;
 }
 
 /* 按钮样式 */
@@ -385,8 +405,9 @@ export default {
 .result-section {
   margin-top: 30px;
   padding: 20px;
-  background: #f8f9fa;
-  border-radius: 8px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .result-header {
@@ -436,11 +457,14 @@ export default {
 }
 
 .result-content {
-  font-size: 16px;
-  line-height: 1.8;
-  color: #333;
+  max-height: 500px;
+  overflow-y: auto;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
   margin-bottom: 20px;
   white-space: pre-wrap;
+  word-break: break-word;
 }
 
 .keywords-section {
