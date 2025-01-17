@@ -262,8 +262,14 @@ export default {
       }
       this.startLoading('crawl');
       try {
-        const response = await axios.post("https://8.217.72.161:8080/api/content/crawl", {
+        const response = await axios.post("https://ugc-content-creator.com/api/content/crawl", {
           productUrl: this.productUrl
+        }, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          withCredentials: true
         });
         this.productInfo = {
           ...this.productInfo,
@@ -272,7 +278,7 @@ export default {
         };
       } catch (error) {
         console.error("获取商品信息失败：", error);
-        alert("获取商品信息失败，请手动填写商品信息");
+        alert(`获取商品信息失败: ${error.response?.data?.message || error.message}`);
       } finally {
         this.stopLoading();
       }
@@ -290,12 +296,18 @@ export default {
           style: this.selectedStyle,
           length: this.selectedLength,
           language: this.selectedLanguage
+        }, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          withCredentials: true
         });
         this.responseText = response.data;
         this.originalContent = response.data;
       } catch (error) {
         console.error("生成文案失败：", error);
-        alert("生成文案失败，请稍后重试！");
+        alert(`生成文案失败: ${error.response?.data?.message || error.message}`);
       } finally {
         this.stopLoading();
       }
@@ -425,20 +437,26 @@ export default {
 
 .result-section {
   margin-top: 30px;
-  padding: 20px;
-  background: #f8f9fa;
+  background: #fff;
   border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .result-content {
+  padding: 20px;
+  max-height: 500px;
+  overflow-y: auto;
+  background: #fff;
+  border-radius: 8px;
+}
+
+.content-display {
   white-space: pre-wrap;
   line-height: 1.6;
   font-size: 1.1rem;
   color: #333;
-  padding: 20px;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .loader {

@@ -192,22 +192,10 @@ export default {
       
       while (retryCount < maxRetries) {
         try {
-          // 记录请求参数
           const requestData = {
             template: this.templateText,
             scene: this.selectedScene,
-            length: this.selectedLength,
-            productInfo: {
-              title: "XXXXX品牌 补水保湿面霜",
-              description: "补水保湿，改善干燥，提亮肤色",
-              price: "299.00",
-              features: [
-                "深层补水",
-                "长效保湿",
-                "温和不刺激",
-                "提亮肤色"
-              ]
-            }
+            length: this.selectedLength
           }
           
           console.log('发送请求数据:', {
@@ -219,7 +207,14 @@ export default {
 
           const response = await axios.post(
             "https://ugc-content-creator.com/api/content/generate-mimic", 
-            requestData
+            requestData,
+            {
+              headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+              },
+              withCredentials: true
+            }
           )
 
           // 记录响应数据
@@ -304,7 +299,7 @@ export default {
 <style scoped>
 /* 基础样式 */
 .container {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 20px;
 }
@@ -320,11 +315,28 @@ export default {
 
 .flex-container {
   display: flex;
-  gap: 30px;
+  gap: 50px;
+  margin: 20px 0;
 }
 
 .left-panel, .right-panel {
   flex: 1;
+  min-width: 0;
+}
+
+/* 添加面板样式 */
+.left-panel {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.right-panel {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* 输入区域样式 */
@@ -336,6 +348,9 @@ export default {
   resize: vertical;
   font-size: 1rem;
   line-height: 1.6;
+  min-height: 300px;
+  max-height: 600px;
+  overflow-y: auto;
 }
 
 /* 按钮样式 */
@@ -390,8 +405,9 @@ export default {
 .result-section {
   margin-top: 30px;
   padding: 20px;
-  background: #f8f9fa;
-  border-radius: 8px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .result-header {
@@ -441,11 +457,14 @@ export default {
 }
 
 .result-content {
-  font-size: 16px;
-  line-height: 1.8;
-  color: #333;
+  max-height: 500px;
+  overflow-y: auto;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
   margin-bottom: 20px;
   white-space: pre-wrap;
+  word-break: break-word;
 }
 
 .keywords-section {
